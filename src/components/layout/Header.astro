@@ -1,0 +1,65 @@
+---
+import Button from '../ui/Button.astro'
+import Social from '../ui/Social.astro'
+import Navigation from './Navigation.astro'
+
+const currentPath = Astro.url.pathname
+const routes = ['/', '/portfolio', '/about-me']
+
+const isActiveRoute = routes.includes(currentPath)
+
+const navItems = isActiveRoute
+  ? ['home', 'experience', 'projects']
+  : ['home', 'about-me']
+---
+
+<header
+  id='main-header'
+  class='sticky top-0 z-50 w-full p-4 font-medium text-white bg-transparent backdrop-blur-xs max-md:px-0 transition-all'
+>
+  <div
+    class='relative mx-auto flex max-w-7xl flex-row items-center justify-between max-xl:px-6'
+  >
+    <a
+      href='/'
+      aria-label='Go to home'
+      class='flex items-center flex-col justify-center cursor-pointer text-xl font-extrabold transition-all text-mint-300 hover:text-white'
+    >
+      GeoTopRob
+    </a>
+
+    <Navigation items={navItems} />
+
+    <div class='flex items-center gap-5 text-xl md:pl-5'>
+      <Button
+        link='https://wa.me/51967372692'
+        text='Contactame'
+      />
+    </div>
+  </div>
+</header>
+
+<script>
+  // Function to handle scroll events with smooth transition
+  function handleScroll() {
+    const header = document.getElementById('main-header')
+    if (!header) return
+
+    // Calculate opacity based on scroll position (0 to 0.8 opacity over 100px of scroll)
+    const scrollY = window.scrollY
+    const maxScroll = 100 // Maximum scroll distance for full opacity
+    const maxOpacity = 0.8 // Maximum background opacity
+
+    // Calculate opacity value between 0 and maxOpacity based on scroll position
+    const opacity = Math.min(scrollY / maxScroll, 1) * maxOpacity
+
+    // Apply background with calculated opacity
+    header.style.backgroundColor = `rgba(0, 0, 0, ${opacity})`
+  }
+
+  // Add scroll event listener with passive option for better performance
+  document.addEventListener('scroll', handleScroll, { passive: true })
+
+  // Run once on page load to set initial state
+  handleScroll()
+</script>

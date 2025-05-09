@@ -1,11 +1,70 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import { Icon } from 'astro-icon/components'
+import Experience from '../components/portfolio/Experience.astro'
+import HeroIndex from '../components/portfolio/HeroIndex.astro'
+import ListProjects from '../components/portfolio/ListProjects.astro'
+import Heading from '../components/ui/Heading.astro'
+import Layout from '../layouts/Layout.astro'
 ---
 
 <Layout>
-	<Welcome />
+  <HeroIndex />
+
+  <section
+    class='py-8 px-8 max-md:py-4 mb-4 scroll-m-16'
+    id='experience'
+  >
+    <div class='flex flex-col pt-8 max-w-4xl mx-auto'>
+      <div class='flex gap-4 items-center justify-center'>
+        <Icon
+          class='text-3xl dark:text-white text-blacktext'
+          name='briefcase'
+        />
+        <Heading
+          text='Experiencia de'
+          textGradient='Trabajo'
+          level={2}
+        />
+      </div>
+
+      <Experience />
+    </div>
+  </section>
+
+  <section
+    class='bg-gradient-to-t from-[#0e0e10] from-50% to-transparent to-100% scroll-m-16'
+    id='projects'
+  >
+    <div class='flex flex-col gap-8 max-w-7xl mx-auto'>
+      <ListProjects>
+        <div class='flex gap-4 items-center justify-center text-center'>
+          <Icon
+            class='text-3xl text-white'
+            name='code'
+          />
+          <Heading
+            text='Projects'
+            textGradient='Completed'
+            level={2}
+          />
+        </div>
+        <p
+          class='z-2 text-center mx-auto text-lg max-xl:text-base max-w-2xl text-gray-200 my-6 leading-6 font-medium'
+        >
+          I love <b
+            class='bg-gradient-to-r from-riptide-300 to-mint-200 text-transparent bg-clip-text'
+            >turning ideas into real projects.</b
+          >
+          <br /> Here I show you some of the <b
+            class='bg-gradient-to-r from-riptide-300 to-mint-200 text-transparent bg-clip-text'
+            >developments</b
+          > I've worked on, applying technology, design, and lots of creativity.
+          <b
+            class='bg-gradient-to-r from-riptide-300 to-mint-200 text-transparent bg-clip-text'
+            >Check them out!</b
+          >
+        </p>
+      </ListProjects>
+    </div>
+  </section>
 </Layout>
